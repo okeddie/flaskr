@@ -11,11 +11,13 @@ SECRET_KEY = 'development key'
 USERNAME = 'admin'
 PASSWORD = 'default'
 
+#The variables above have been set into Flask.
+
 # Application Creation:
 app = Flask(__name__)
-"""From object will look at the given object ( if it's a string it will import it)
-and then look for all uppercase variables defined there. in this case the configuration
-the config right above"""
+"""from_object() will look at the given object ( if it's a string it will import it)
+and then look for all uppercase variables defined in it. in this case the configuration
+the config right above"""	
 app.config.from_object(__name__)
 
 # Connection to database
@@ -28,6 +30,6 @@ def init_db():
             db.cursor().executescript(f.read())
         db.commit()
 
-# Start App
+# Start App. We use port 80 and must not use quotes on it.
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port=80)
