@@ -3,7 +3,6 @@ import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
 from contextlib import closing
 
-
 # Configuration:
 DATABASE = '/tmp/flaskr.db'
 DEBUG = True
@@ -29,6 +28,8 @@ def init_db():
         with app.open_resource('schema.sql', mode='r') as f:
             db.cursor().executescript(f.read())
         db.commit()
+
+init_db()
 
 # Start App. We use port 80 and must not use quotes on it.
 if __name__ == '__main__':
